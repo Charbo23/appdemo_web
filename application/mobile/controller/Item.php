@@ -8,7 +8,7 @@ class Item extends Controller
     public function lst() {
         if(request()->isPost()){
             
-            $itemList=db('item')->select();
+            $itemList=db('item')->order('time desc')->select();
             return $this->success('','',$itemList);
         }
     }
@@ -16,6 +16,7 @@ class Item extends Controller
     public function add() {
         if(request()->isPost()){
             $data=input('post.');
+            $data['time']=time();
             $validate = Loader::validate('Item');
             if (!$validate->scene('add')->check($data)) {
                 return $this->error($validate->getError());
