@@ -7,9 +7,16 @@ class Item extends Controller
 {
     public function lst() {
         if(request()->isPost()){
-            
             $itemList=db('item')->order('time desc')->select();
             return $this->success('','',$itemList);
+        }
+    }
+    
+    public function detail() {
+        if(request()->isPost()){
+            $id=input('item_id');
+            $item = ItemModel::get($id);
+            return $this->success('','',$item);
         }
     }
     
@@ -29,4 +36,5 @@ class Item extends Controller
             }
         }
     }
+    
 }
