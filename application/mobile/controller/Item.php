@@ -7,7 +7,7 @@ class Item extends Controller
 {
     public function lst() {
         if(request()->isPost()){
-            $itemList=db('item')->order('time desc')->select();
+            $itemList=db('item')->field('id,title')->order('time desc')->select();
             return $this->success('','',$itemList);
         }
     }
