@@ -16,6 +16,8 @@ class Item extends Controller
         if(request()->isPost()){
             $id=input('item_id');
             $item = ItemModel::get($id);
+            $item->user;
+            $item['time']=date('Y-m-d H:i', $item['time']);
             return $this->success('','',$item);
         }
     }
